@@ -1,4 +1,5 @@
 import database.db
+from time import sleep
 import data.get
 import data.clean
 from datetime import datetime, timedelta
@@ -32,30 +33,13 @@ class TeamData:
         print(self.tshtg_df)
 
 nba_tm = TeamData('NBA', yesterday)
+
 # print(nba_tm.game_df)
 # print(nba_tm.season_df)
 
-# def get_clean_data(lg):
-#     raw_tm_logs = data.get.game_logs(game_date=yesterday, player_team='T', lg=lg)
-#     cln_tm_logs = data.clean.raw_df(raw_tm_logs)
+# sleep(5)
+# wnba_tm = TeamData('WNBA', yesterday)
 
-#     szn_df = data.clean.season_df(cln_tm_logs)
+# sleep(5)
+# g_tm = TeamDate('G', yesterday)
 
-#     game_df = data.clean.game(cln_tm_logs)
-#     tlogs_df = data.clean.tgame(cln_tm_logs)
-#     tbox_df = data.clean.tbox(cln_tm_logs)
-#     tshtg_df = data.clean.tshtg(cln_tm_logs)
-#     print(szn_df)
-#     print(game_df)
-#     # print(tlogs_df)
-#     # print(tbox_df)
-#     # print(tshtg_df)
-
-
-
-# TODO - GET AND CLEAN WNBA LOGS
-
-# TODO - GET AND CLEAN G LEAGUE LOGS
-
-
-# raw_plr_logs = data.get.game_logs(game_date='05/11/2025')
