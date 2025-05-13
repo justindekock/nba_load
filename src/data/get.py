@@ -1,11 +1,7 @@
-
+from time import sleep
 from nba_api.stats.endpoints import leaguegamefinder, playbyplayv3, playerindex, teaminfocommon
 
 def game_logs(game_date, game_date_to=None, player_team = 'P', lg = 'NBA'):
-    # 00 for nba, 10 for wnba, 20 for g league
-    # player_team = 'P' gets player logs, 'T' gets team logs
-    
-    
     retries = 0
     while retries < 3:
         try:
@@ -22,6 +18,7 @@ def game_logs(game_date, game_date_to=None, player_team = 'P', lg = 'NBA'):
             return df
         except Exception as e:
             print(e)
+            sleep(15)
     
     
 def players():

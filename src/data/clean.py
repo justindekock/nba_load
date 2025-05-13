@@ -3,7 +3,7 @@ import pandas as pd
 # any fetched game logs needs to be passed through here
 def raw_df(df):
     df.columns = [col.lower() for col in df.columns]
-    df = df.rename(columns={'team_abbreviation': 'team', 'min': 'mins'})
+    df = df.rename(columns={'team_abbreviation': 'team', 'min': 'mins', 'plus_minus': 'pm'})
     df = df.fillna(0)
     return df
 
@@ -99,24 +99,48 @@ def game(df):
 def tgame(df):
     # have to make a copy to not affect original df
     tgame_df = df[['game_id', 'season_id', 'team_id', 'game_date', 'matchup',
-                   'pts', 'wl', 'mins']].copy() 
+                   'pts', 'pm', 'wl', 'mins']].copy() 
 
     # add loc field (home/away indicator)
     #tgame_df['loc'] = tgame_df['matchup'].apply(lambda x: 'A' if x[4] == '@' else 'H')
     tgame_df['loc'] = tgame_df['matchup'].apply(get_loc)
     # add ot indicator (based on minutes) -- 0 if < 260, 2 if > 280, 1 if between 260 & 280
     tgame_df['ot'] = tgame_df['mins'].apply(get_ot)
-    
+    tgame_df['pm'] = tgame_df['pm'].astype(int)
+    tgame_df = tgame_df.rename(columns={'pm': 'diff'})
     tgame_df = tgame_df.drop(['mins'], axis=1)
     
     return tgame_df
 
 def tbox(df):
     return df[['game_id', 'season_id', 'team_id', 'mins', 'pts', 'ast', 
-           'reb', 'stl', 'blk', 'oreb', 'dreb', 'tov', 'pf']].copy() 
+           'reb', 'stl', 'blk', 'oreb', 'dreb', 'pm', 'tov', 'pf']].copy() 
     
 def tshtg(df):
     return df[['game_id', 'season_id', 'team_id', 'fgm', 'fga', 'fg3m', 
            'fg3a', 'ftm', 'fta', 'fg_pct', 'fg3_pct', 'ft_pct']].copy() 
     
+# pass the clean team game logs to this to get the ot/wl/loc data
+def pgame(df, tm_df):
+    pl_df = df[['game_id', 'season_id', 'team_id', 'player_id', 'mins', 'pts']].copy()
     
+    joined = pl_df.merge(tm_df, on=['game_id', 'season_id', 'team_id'])
+    
+    joined = joined.rename(columns={'pts_x': 'pts'})
+    # joined = joined.drop(columns=['pts_y'])
+    
+    
+    cols = ['game_id', 'season_id', 'team_id', 'player_id', 'game_date', 
+            'matchup', 'mins', 'pts', 'diff', 'wl', 'loc', 'ot']
+    
+    pgame_df = joined[cols]
+    print(pgame_df)
+
+def pbox(df):
+    return df[['game_id', 'season_id', 'team_id', 'player_id', 'mins', 'pts', 'ast', 
+           'reb', 'stl', 'blk', 'oreb', 'dreb', 'pm', 'tov', 'pf']].copy() 
+    
+
+def pshtg(df):
+    return df[['game_id', 'season_id', 'team_id', 'player_id', 'fgm', 'fga', 'fg3m', 
+           'fg3a', 'ftm', 'fta', 'fg_pct', 'fg3_pct', 'ft_pct']].copy() 
