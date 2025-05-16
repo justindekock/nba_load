@@ -1,4 +1,4 @@
-import database.db
+import database.config_db
 import data.get
 import data.clean
 import data.vali
@@ -18,6 +18,7 @@ class TeamData:
             # PASS ANYTHING TO print_on TO PRINT DFS
             if print_on:
                 self.print_dfs()
+                
                 
         else:
             # log no games 

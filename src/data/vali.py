@@ -1,4 +1,5 @@
-from database.db import seasons, players
+
+from database.config_db import seasons, players
 
 # this file will interact directly with the database file
 
@@ -14,7 +15,13 @@ def check_players():
 class DatabaseVali:
     def __init__(self):
         self.db_players = self.select_players()
+        self.db_seasons = self.select_seasons()
+        
         
     def select_players():
         # select active players in database
+        pass
+    
+    def select_seasons():
+        pass
     

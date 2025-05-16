@@ -1,18 +1,18 @@
 insert ignore into player (player_id, player, team_id, lg, active) 
-    values (
+    values 
         (201144,'Mike Conley',1610612750,'lg',1),
-        (201567,'Kevin Love'1610612748,'lg',1),
+        (201567,'Kevin Love',1610612748,'lg',1),
         (2544,'LeBron James',1610612747,'lg',1),
         (201572,'Brook Lopez',1610612749,'lg',1),
-        (0,'Playbyplay Placeholder',0,'lg',1)
-    )
+        (0,'Playbyplay Placeholder',0,'lg',1);
+    
 insert ignore into team (team_id, team, team_name, lg) 
-    values (
+    values 
         (1610612747,'LAL','Los Angeles Lakers','lg'),
         (1610612748,'MIA','Miami Heat','lg'),
         (1610612749,'MIL','Milwaukee Bucks','lg'),
-        (1610612750,'MIN','Minnesota Timberwolves','lg')
-    )
+        (1610612750,'MIN','Minnesota Timberwolves','lg');
+    
 
 
 
@@ -35,5 +35,4 @@ insert ignore into team (team_id, team, team_name, lg)
 |    201567 | Kevin Love             | 1610612748 |
 
 |    201572 | Brook Lopez            | 1610612749 |
-
 

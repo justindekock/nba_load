@@ -1,4 +1,4 @@
-import database.db
+import srcdatabase.config_db
 import data.get
 import data.clean
 import data.vali
@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 class PlayerData:
     def __init__(self, lg, game_date, tm_df, print_on = None):
         # players from api
-        self.active_players = data.get.players()
+        self.active_players = data.get.active_players()
         
         self.raw_pl = data.get.game_logs(game_date=game_date, player_team='P', lg=lg)
         if not self.raw_pl.empty:
@@ -30,5 +30,12 @@ class PlayerData:
         print(self.pbox_df)
         print(self.pshtg_df)
         
-    # TODO - run on init, return df of players that need to be updated
-    def players_update(self)
+    # compare the fetched players to what is in the database, 
+    # return df of players that need to be updated
+    def compare_db():
+        pass
+        
+    # update the players that are different in the database 
+    def players_update(self):
+        pass
+        # function should be defined in database.update

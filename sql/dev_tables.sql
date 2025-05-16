@@ -32,6 +32,8 @@ create table if not exists player (
     player_id int,
     player varchar(255),
     team_id int,
+    active boolean, 
+    lg varchar(4),
     primary key (player_id),
     foreign key (team_id) references team (team_id)
 );
