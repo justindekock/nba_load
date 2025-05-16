@@ -21,7 +21,7 @@ def game_logs(game_date, game_date_to=None, player_team = 'P', lg = 'NBA'):
             sleep(15)
     
     
-def players():
+def active_players():
     retries = 0
     while retries < 3:
         try:

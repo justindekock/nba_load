@@ -134,7 +134,7 @@ def pgame(df, tm_df):
             'matchup', 'mins', 'pts', 'diff', 'wl', 'loc', 'ot']
     
     pgame_df = joined[cols]
-    print(pgame_df)
+    # print(pgame_df)
 
 def pbox(df):
     return df[['game_id', 'season_id', 'team_id', 'player_id', 'mins', 'pts', 'ast', 
